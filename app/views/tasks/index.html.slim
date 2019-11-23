@@ -1,0 +1,24 @@
+h1 Tasks
+
+= link_to "New Tasks", new_task_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thread.thread-default
+    tr
+      th= Task.human_attribute_name(:name)
+      th= Task.human_attribute_name(:start_date)
+      th= Task.human_attribute_name(:end_date)
+  tbody
+    - @tasks.each do |task|
+      tr
+        td= link_to task.name, task, class: 'task'
+        td= task.start_date
+        td= task.end_date
+        td
+          = link_to 'Edit', edit_task_path(task), class: 'btn btn-primary mr-3'
+          = link_to 'Delete', task, method: :delete, data: {confirm: "Are you sure you want to delete '#{task.name}?'"}, class: 'btn btn-danger'
+
+div id = 'calendar'
+
+
