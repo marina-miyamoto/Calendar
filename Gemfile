@@ -74,3 +74,5 @@ gem 'rails_autolink'
 
 gem 'bootstrap4-datetime-picker-rails'
 gem 'font-awesome-rails'
+
+gem 'ransack'

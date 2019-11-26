@@ -1,0 +1,45 @@
+h1 Tasks
+
+= link_to "New Tasks", new_task_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thread.thread-default
+    tr
+      th= Task.human_attribute_name(:name)
+      th= sort_link(@q, :start_date)
+      th= Task.human_attribute_name(:end_date)
+      th
+  tbody
+    - @tasks.each do |task|
+      tr
+        td= link_to task.name, task, class: 'task'
+        td= task.start_date
+        td= task.end_date
+        td
+          = link_to 'Edit', edit_task_path(task), class: 'btn btn-primary mr-3'
+          = link_to 'Delete', task, method: :delete, data: {confirm: "Are you sure you want to delete '#{task.name}?'"}, class: 'btn btn-danger'
+
+
+h1 Events
+
+= link_to "New Events", new_event_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thread.thread-default
+    tr
+      th= Event.human_attribute_name(:name)
+      th= sort_link(@q, :start_date)
+      th= Event.human_attribute_name(:end_date)
+  tbody
+    - @events.each do |event|
+      tr
+        td= link_to event.name, event, class: 'event'
+        td= event.start_date
+        td= event.end_date
+        td
+          = link_to 'Edit', edit_event_path(event), class: 'btn btn-primary mr-3'
+          = link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure you want to delete '#{event.name}?'"}, class: 'btn btn-danger'
+
+div id = 'calendar'

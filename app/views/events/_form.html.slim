@@ -1,0 +1,31 @@
+= form_with model: event, local: true do |f|
+    .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control', id: 'event_name'
+    .form-group
+        = f.label :description
+        = f.text_area :description, rows: 5, class: 'form-control', id: 'event_description'
+    .form-group
+        = f.label :color
+        br
+        = f.select :color, [["Red","Red"], ["Blue", "Blue"], ["Yellow", "Yellow"], ["Green", "Green"], ["Orange", "Orange"], ["Purple", "Purple"], ["Others", "Others"]], class: "form-control"
+    .form-group
+        = f.label :start_date
+        .input-group data-target-input= "nearest"
+            = f.text_field :start_date, class: 'form-control datepicker', id: 'event_start_date'
+            .input-group-append [data-target= '#event_start_date', data-toggle= 'datetimepicker']
+                .input-group-text.fa.fa-calendar
+    .form-group
+        = f.label :end_date
+        .input-group data-target-input= "nearest" 
+            = f.text_field :end_date, class: 'form-control datepicker', id: 'event_end_date'
+            .input-group-append [data-target= '#event_end_date', data-toggle= 'datetimepicker']
+                .input-group-text.fa.fa-calendar
+    = f.submit nil, class: 'btn btn-primary'
+
+javascript:
+    $(function () {
+        $('.datepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm'
+        });
+    });

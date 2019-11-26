@@ -1,0 +1,30 @@
+h1 More Information
+
+//nav.justify-content-end
+//   = link_to 'Events', events_path, class: 'nav-link'
+
+br
+
+table.table.table-hover
+    tbody
+        tr
+            th= Event.human_attribute_name(:id)
+            td= @event.id
+        tr
+            th= Event.human_attribute_name(:name)
+            td= @event.name
+        tr
+            th= Event.human_attribute_name(:description)
+            td= auto_link(simple_format(h(@event.description), {}, sanitize: false, wrapper_tag: "div"))
+        tr
+            th= Event.human_attribute_name(:color)
+            td= @event.color
+        tr
+            th= Event.human_attribute_name(:start_date)
+            td= @event.start_date
+        tr
+            th= Event.human_attribute_name(:end_date)
+            td= @event.end_date
+
+= link_to 'Edit', edit_event_path, class: 'btn btn-primary mr-3'
+= link_to 'Delete', @event, method: :delete, data: {confirm: "Are you sure you want to delete '#{@event.name}?'"}, class: 'btn btn-danger'

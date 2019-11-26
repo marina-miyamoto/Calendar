@@ -33,7 +33,31 @@ $(function () {
     $(document).on('turbolinks:before-cache', clearCalendar);
 
     $('#calendar').fullCalendar({
-        events: '/tasks.json',
+        events: '/events.json',
+        eventRender: function(event, element) {
+            if (event.color == "Red") {
+                element.css('background-color', 'rgb(237, 85, 101)' );
+                element.css('border', 'rgb(237, 85, 101)' );
+            } else if (event.color == "Blue") {
+                element.css('background-color', 'rgb(28, 132, 198)' );
+                element.css('border', 'rgb(28, 132, 198)' );
+            } else if (event.color == "Yellow") {
+                element.css('background-color', 'rgb(243, 226, 69)' );
+                element.css('border', 'rgb(243, 226, 69)' );
+            } else if (event.color == "Green") {
+                element.css('background-color', 'rgb(26, 179, 148)' );
+                element.css('border', 'rgb(26, 179, 148)' );
+            } else if (event.color == "Orange") {
+                element.css('background-color', 'rgb(248, 172, 89)' );
+                element.css('border', 'rgb(248, 172, 89)' );
+            } else if (event.color == "Purple") {
+                element.css('background-color', 'rgb(146, 92, 190)' );
+                element.css('border', 'rgb(146, 92, 190)' );
+            } else if (event.color == "Others") {
+                element.css('background-color', 'rgb(0, 0, 0)' );
+                element.css('border', 'rgb(0, 0, 0)' );
+            }
+        },
         header: {
             left: 'month, agendaWeek, agendaDay',
             center: 'title',

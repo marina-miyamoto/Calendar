@@ -7,8 +7,9 @@ table.table.table-hover
   thread.thread-default
     tr
       th= Task.human_attribute_name(:name)
-      th= Task.human_attribute_name(:start_date)
+      th= sort_link(@q, :start_date)
       th= Task.human_attribute_name(:end_date)
+      th
   tbody
     - @tasks.each do |task|
       tr

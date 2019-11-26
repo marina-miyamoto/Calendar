@@ -2,11 +2,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks
-    respond_to do |format|
-      format.html
-      format.json
-    end
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true)
   end
 
   def show
@@ -21,14 +18,14 @@ class TasksController < ApplicationController
 
   def update
     @task.update!(task_params)
-    redirect_to @task, notice: "Task '#{@task.name}' has been updated."
+    redirect_to root_url, notice: "Task '#{@task.name}' has been updated."
   end
 
   def create
     @task = Task.new(task_params.merge(user_id: current_user.id))
     
     if @task.save
-      redirect_to @task, notice: "Task '#{@task.name}' has been added."
+      redirect_to root_url, notice: "Task '#{@task.name}' has been added."
     else
       render :new
     end
@@ -36,7 +33,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_url, notice: "Task '#{@task.name}' has been deleted."
+    redirect_to root_url, notice: "Task '#{@task.name}' has been deleted."
   end
 
   private
