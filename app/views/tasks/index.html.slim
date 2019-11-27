@@ -3,6 +3,9 @@ h1 Tasks
 = link_to "New Tasks", new_task_path, class: 'btn btn-primary'
 
 .mb-3
+  = paginate @tasks
+  = page_entries_info @tasks
+
 table.table.table-hover
   thread.thread-default
     tr

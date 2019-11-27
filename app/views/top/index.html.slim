@@ -1,8 +1,12 @@
 h1 Tasks
 
 = link_to "New Tasks", new_task_path, class: 'btn btn-primary'
-
+br
+br
 .mb-3
+  = paginate @tasks
+  = page_entries_info @tasks
+
 table.table.table-hover
   thread.thread-default
     tr
@@ -24,8 +28,12 @@ table.table.table-hover
 h1 Events
 
 = link_to "New Events", new_event_path, class: 'btn btn-primary'
-
+br
+br
 .mb-3
+  = paginate @events
+  = page_entries_info @events
+
 table.table.table-hover
   thread.thread-default
     tr

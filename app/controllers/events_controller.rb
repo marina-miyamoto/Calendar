@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @q = current_user.events.ransack(params[:q])
-    @events = @q.result(distinct: true)
+    @events = @q.result(distinct: true).page(params[:page])
    
     respond_to do |format|
       format.html
